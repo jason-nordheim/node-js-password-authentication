@@ -8,4 +8,9 @@ app.get('/users', (request, response) => {
 })
 
 
+app.post('/users', (request, response) => {
+    const user = { name: request.body.name, password: request.body.password }
+    users.push(user)
+})
+
 app.listen(3000)
