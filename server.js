@@ -1,22 +1,25 @@
 const express = require('express')
 const app = express()
+const PORT = 3000; 
 
-app.use(express.json)
+app.set('view-engine', 'ejs')
 
 const users = []
 
-app.get('/users', (request, response) => {
-    response.json(users) 
+app.get('/', (request, response) => {
+    response.render('index.ejs', {name: "kyle"})
 })
 
-
-app.post('/users', (request, response) => {
-    const user = { 
-        name: request.body.name, 
-        password: request.body.password 
-    }
-    users.push(user)
-    response.status(201).send()
+app.get('/login', (request, response) => {
+    response.render('login.ejs')
 })
 
-app.listen(3000)
+app.get('/register', (request, response) => {
+  response.render('register.ejs')  
+})
+
+app.post('/register',(request, response) => {
+
+})
+
+app.listen(PORT, console.log(`Listening on ${PORT}`))
